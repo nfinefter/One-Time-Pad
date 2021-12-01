@@ -57,17 +57,33 @@ namespace One_Time_Pad
             return decryptedString;
         }
 
+        static void TestFunctions(int interations, string input)
+        {
+            string key = OneTimePad(input);
+            string encryptedString = Encrypt(input, key);
+            string decryptedString = Decrypt(encryptedString, key);
+
+            if (key != decryptedString)
+            {
+                throw new Exception("Did not work");
+            }
+
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Give string");
             string input = Console.ReadLine();
 
-            string key = OneTimePad(input);
-            string encryptedString = Encrypt(input, key);
-            string decryptedString = Decrypt(encryptedString, key);
-            Console.WriteLine("Key: " + key);
-            Console.WriteLine("Encrypted: " + encryptedString);
-            Console.WriteLine("Decrypted: " + decryptedString);
+            //string key = OneTimePad(input);
+            //string encryptedString = Encrypt(input, key);
+            //string decryptedString = Decrypt(encryptedString, key);
+            //Console.WriteLine("Key: " + key);
+            //Console.WriteLine("Encrypted: " + encryptedString);
+            //Console.WriteLine("Decrypted: " + decryptedString);
+
+            TestFunctions(5, input);
+
         }
     }
 }
